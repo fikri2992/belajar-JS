@@ -1,27 +1,6 @@
 import React, { Component } from 'react'
-import { AppRegistry, View, Text, StyleSheet } from 'react-native'
-
-class Counter extends Component {
-
-  state = {count: 0}
-
-  componentDidMount() {
-    setInterval(() => {
-      this.setState({count: this.state.count + 12})
-    }, 1000)
-  }
-
-  render() {
-    const {count} = this.state
-    const {color, size} = this.props
-
-    return (
-      <Text style={{color, fontSize: size}}>
-        {count}
-      </Text>
-    )
-  }
-}
+import { AppRegistry, View, Text, StyleSheet,Button } from 'react-native'
+import Counter from './Counter';
 
 export default class App extends Component {
   render() {
@@ -31,6 +10,7 @@ export default class App extends Component {
         <Counter color={'skyblue'} size={32} />
         <Counter color={'steelblue'} size={80} />
         <Counter color={'darkblue'} size={140} />
+       
       </View>
     )
   }
