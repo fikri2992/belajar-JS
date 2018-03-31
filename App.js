@@ -1,51 +1,47 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import React, { Component } from 'react'
+import { AppRegistry, View, Text, StyleSheet } from 'react-native'
 
-const Weather = () => {
-  return (
-    <View style={styles.weatherContainer}>
-      <View style={styles.headerContainer}>
-        <MaterialCommunityIcons size={48} name="weather-sunny" color={'#fff'} />
-        <Text style={styles.tempText}>Temperature˚</Text>
+class Counter extends Component {
+
+  state = {count: 0}
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({count: this.state.count + 12})
+    }, 1000)
+  }
+
+  render() {
+    const {count} = this.state
+    const {color, size} = this.props
+
+    return (
+      <Text style={{color, fontSize: size}}>
+        {count}
+      </Text>
+    )
+  }
+}
+
+export default class App extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Counter color={'lightblue'} size={16} />
+        <Counter color={'skyblue'} size={32} />
+        <Counter color={'steelblue'} size={80} />
+        <Counter color={'darkblue'} size={140} />
       </View>
-      <View style={styles.bodyContainer}>
-        <Text style={styles.title}>So Sunny</Text>
-        <Text style={styles.subtitle}>It hurts my eyes!</Text>
-      </View>
-    </View>
-  );
-};
+    )
+  }
+}
 
 const styles = StyleSheet.create({
-  weatherContainer: {
+  container: {
     flex: 1,
-    backgroundColor: '#f7b733'
-  },
-  headerContainer: {
-    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
   },
-  tempText: {
-    fontSize: 48,
-    color: '#fff'
-  },
-  bodyContainer: {
-    flex: 2,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-end',
-    paddingLeft: 25,
-    marginBottom: 40
-  },
-  title: {
-    fontSize: 48,
-    color: '#fff'
-  },
-  subtitle: {
-    fontSize: 24,
-    color: '#fff'
-  }
-});
+})
 
-export default Weather;
+AppRegistry.registerComponent('App', () => App)
